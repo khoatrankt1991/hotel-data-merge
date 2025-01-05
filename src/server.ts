@@ -8,10 +8,7 @@ interface ServerOptions {
 	port: number;
 	apiPrefix?: string;
 }
-// const app1 = express();
-// app1.get('/ddsds', (req, res) => {
 
-// })
 export class Server {
 	private readonly app = express();
 	private readonly port: number;
