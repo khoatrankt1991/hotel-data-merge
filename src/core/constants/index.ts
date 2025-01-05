@@ -16,3 +16,8 @@ export enum HttpCode {
 	NOT_FOUND = 404,
 	INTERNAL_SERVER_ERROR = 500
 }
+
+export enum ApiVersion {
+	v1 = 'v1',
+	v2 = 'v2'
+}

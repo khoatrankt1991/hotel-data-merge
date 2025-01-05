@@ -1,8 +1,10 @@
 import express, { type Request, type Response } from 'express';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
+import routes from './services';
 
 import { HttpCode, ONE_HUNDRED, ONE_THOUSAND, SIXTY } from './core/constants';
+import { applyRoutes } from './middlewares';
 
 interface ServerOptions {
 	port: number;
@@ -31,7 +33,9 @@ export class Server {
 				message: 'Too many requests from this IP, please try again in one hour'
 			})
 		);
-
+		// default version 1.0
+		applyRoutes('ascenda', routes, this.app);
+		
 		// Test rest api
 		this.app.get('/', (_req: Request, res: Response) => {
 			res.status(HttpCode.OK).send({
