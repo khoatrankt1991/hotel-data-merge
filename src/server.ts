@@ -35,7 +35,7 @@ export class Server {
 		);
 		// default version 1.0
 		applyRoutes('ascenda', routes, this.app);
-		
+
 		// Test rest api
 		this.app.get('/', (_req: Request, res: Response) => {
 			res.status(HttpCode.OK).send({
