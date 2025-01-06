@@ -9,11 +9,14 @@
 ### How to run & test
 Require: Node > 22
 To start run in local
+runing `yarn` to install packages
 using `yarn dev`
 To build
-using `yarn build`
+using `yarn && yarn build`
 To test:
 using `yarn test`
+To check prettier code
+using `yarn prettier-check`
 How to test quickly:
 On Local: 
 ```
