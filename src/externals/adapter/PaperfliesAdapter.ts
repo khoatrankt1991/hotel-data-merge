@@ -1,7 +1,7 @@
 import { HotelAdapter, HotelObjAdapter } from './Adapter';
 import { PaperHotelDetail } from '../suppliers/paperflies/types';
 import { HotelAmenities, HotelImages, HotelLocation } from '../../models/Hotel';
-import { formatLowTrimArr } from '../../utils';
+import { formatLowTrimArr, trim } from '../../utils';
 
 export class PaperfliesAdapter implements HotelAdapter {
 	private _data: PaperHotelDetail;
@@ -20,12 +20,12 @@ export class PaperfliesAdapter implements HotelAdapter {
 	getLocation(): Partial<HotelLocation> {
 		if (!this._data.location) return {};
 		return {
-			address: this._data.location.address || '',
-			country: this._data.location.country || ''
+			address: trim(this._data.location.address),
+			country: trim(this._data.location.country)
 		};
 	}
 	getDescription(): string {
-		return this._data.details || '';
+		return trim(this._data.details);
 	}
 	getAmenities(): Partial<HotelAmenities> {
 		if (!this._data.amenities) return {};

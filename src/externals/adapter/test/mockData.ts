@@ -20,14 +20,14 @@ export const expectedAdaptAcmeHotelDetail: HotelObjAdapter = {
 	id: 'iJhz',
 	destinationId: 5432,
 	name: 'Beach Villas Singapore',
-	description: '  This 5 star hotel is located on the coastline of Singapore.',
+	description: 'This 5 star hotel is located on the coastline of Singapore.',
 	amenities: {
 		general: ['pool', 'businesscenter', 'wifi', 'drycleaning', 'breakfast']
 	},
 	location: {
 		lat: 1.264751,
 		lng: 103.824006,
-		address: ' 8 Sentosa Gateway, Beach Villas ',
+		address: '8 Sentosa Gateway, Beach Villas',
 		city: 'Singapore',
 		country: 'SG'
 	},
@@ -212,7 +212,7 @@ export const expectHotelDataMerged: HotelObjAdapter = {
 	location: {
 		lat: 1.264751,
 		lng: 103.824006,
-		address: ' 8 Sentosa Gateway, Beach Villas ',
+		address: '8 Sentosa Gateway, Beach Villas',
 		city: 'Singapore',
 		country: 'SG'
 	},

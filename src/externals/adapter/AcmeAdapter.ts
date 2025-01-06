@@ -1,7 +1,7 @@
 import { HotelAdapter, HotelObjAdapter } from './Adapter';
 import { AcmeHotelDetail } from '../suppliers/acme/types';
 import { HotelAmenities, HotelImages, HotelLocation } from '../../models/Hotel';
-import { formatLowTrimArr } from '../../utils';
+import { formatLowTrimArr, trim } from '../../utils';
 
 export class AcmeAdapter implements HotelAdapter {
 	private _data: AcmeHotelDetail;
@@ -15,19 +15,19 @@ export class AcmeAdapter implements HotelAdapter {
 		return this._data.DestinationId;
 	}
 	getName(): string {
-		return this._data.Name;
+		return trim(this._data.Name);
 	}
 	getLocation(): Partial<HotelLocation> {
 		return {
 			lat: this._data.Latitude,
 			lng: this._data.Longitude,
-			address: this._data.Address,
-			city: this._data.City,
-			country: this._data.Country
+			address: trim(this._data.Address),
+			city: trim(this._data.City),
+			country: trim(this._data.Country)
 		};
 	}
 	getDescription(): string {
-		return this._data.Description;
+		return trim(this._data.Description);
 	}
 	getAmenities(): Partial<HotelAmenities> {
 		const result: Partial<HotelAmenities> = {};

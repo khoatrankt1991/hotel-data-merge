@@ -7,3 +7,8 @@ export const formatLowTrimArr = (arr: string[]) => {
 	if (!arr) return [];
 	return arr.map((e) => e.toLowerCase().trim());
 };
+
+export const trim = (str: string | null | undefined) => {
+	if (!str) return '';
+	return str.trim();
+};

@@ -1,7 +1,7 @@
 import { HotelAdapter, HotelObjAdapter } from './Adapter';
 import { PatagoniaHotelDetail } from '../suppliers/patagonia/types';
 import { HotelAmenities, HotelImages, HotelLocation } from '../../models/Hotel';
-import { formatLowTrimArr } from '../../utils';
+import { formatLowTrimArr, trim } from '../../utils';
 
 export class PatagoniaAdapter implements HotelAdapter {
 	private _data: PatagoniaHotelDetail;
@@ -18,17 +18,13 @@ export class PatagoniaAdapter implements HotelAdapter {
 		return this._data.name;
 	}
 	getLocation(): Partial<HotelLocation> {
-		if (this._data.lat && this._data.lng) {
-			const hotelLocation: HotelLocation = {
-				lat: this._data.lat,
-				lng: this._data.lng,
-				address: this._data.address,
-				city: '',
-				country: ''
-			};
-			return hotelLocation;
-		}
-		return {};
+		return {
+			lat: this._data.lat,
+			lng: this._data.lng,
+			address: trim(this._data.address),
+			city: '',
+			country: ''
+		};
 	}
 	getDescription(): string {
 		return '';

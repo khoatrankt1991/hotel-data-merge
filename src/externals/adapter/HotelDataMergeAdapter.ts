@@ -27,6 +27,9 @@ export class HotelDataMerge implements HotelAdapter {
 		return this._items[0].name;
 	}
 	getLocation(): Partial<HotelLocation> {
+		// should use lodash merge but it' not working correctly
+		// @ts-ignore
+		// return _.merge(...this._items.map(e => e.location))
 		return {
 			lat: this._items.find((e) => e.location?.lat)?.location?.lat,
 			lng: this._items.find((e) => e.location?.lat)?.location?.lng,
