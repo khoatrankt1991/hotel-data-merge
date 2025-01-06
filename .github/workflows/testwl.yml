@@ -30,8 +30,8 @@ jobs:
     - run: yarn prettier-check
     - run: yarn test
     - run: yarn build
-  # deploy:
-  #   name: Deploy
+  deploy:
+    name: Deploy
   #   needs: [test]
   #   uses: johnbeynon/render-deploy-action@v0.0.8
   #   name: Deploy to render
