@@ -1,9 +1,10 @@
+import { envs } from '../../../core/config/env';
 import axios from 'axios';
 import { PatagoniaHotelDetail } from './types';
 import { SearchHotelParams } from '../types';
 
 export const getPatagonia = async (): Promise<PatagoniaHotelDetail[]> => {
-	const result = await axios.get('https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/patagonia');
+	const result = await axios.get(envs.PATAGONIE_SUPPLIER_API_URL);
 	return result.data;
 };
 

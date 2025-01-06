@@ -1,8 +1,10 @@
+import { envs } from '../../../core/config/env';
 import axios from 'axios';
 import { AcmeHotelDetail } from './types';
 import { SearchHotelParams } from '../types';
+
 export const getAcmeData = async (): Promise<AcmeHotelDetail[]> => {
-	const result = await axios.get('https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/acme');
+	const result = await axios.get(envs.ACME_SUPPLIER_API_URL);
 	return result.data;
 };
 

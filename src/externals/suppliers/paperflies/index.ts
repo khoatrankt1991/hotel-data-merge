@@ -1,9 +1,10 @@
+import { envs } from '../../../core/config/env';
 import axios from 'axios';
 import { PaperHotelDetail } from './types';
 import { SearchHotelParams } from '../types';
 
 export const getPaperflies = async (): Promise<PaperHotelDetail[]> => {
-	const result = await axios.get('https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/paperflies');
+	const result = await axios.get(envs.PAPER_SUPPLIER_API_URL);
 	return result.data;
 };
 
