@@ -46,7 +46,6 @@ export class HotelDataMerge implements HotelAdapter {
 		return result;
 	}
 	getAmenities(): Partial<HotelAmenities> {
-		// return this._items[1].amenities || {}
 		const generals: string[] = [];
 		const rooms: string[] = [];
 		this._items.forEach((e) => {
@@ -59,13 +58,18 @@ export class HotelDataMerge implements HotelAdapter {
 		};
 	}
 	getImages(): Partial<HotelImages> {
-		return this._items[0].images || {};
+		return {
+			rooms: this._items.find((e) => e.images?.rooms)?.images?.rooms,
+			site: this._items.find((e) => e.images?.site)?.images?.site,
+			amenities: this._items.find((e) => e.images?.amenities)?.images?.amenities
+		};
 	}
 	getBookingConditions(): string[] {
 		const bookingConditions: string[] = [];
 		this._items.forEach((e) => {
 			if (e.bookingConditions) bookingConditions.push(...e.bookingConditions);
 		});
+
 		return [...new Set([...bookingConditions])];
 	}
 	buildHotel(): HotelObjAdapter {

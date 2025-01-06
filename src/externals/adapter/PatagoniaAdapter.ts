@@ -1,6 +1,7 @@
 import { HotelAdapter, HotelObjAdapter } from './Adapter';
 import { PatagoniaHotelDetail } from '../suppliers/patagonia/types';
 import { HotelAmenities, HotelImages, HotelLocation } from '../../models/Hotel';
+import { formatLowTrimArr } from '../../utils';
 
 export class PatagoniaAdapter implements HotelAdapter {
 	private _data: PatagoniaHotelDetail;
@@ -33,15 +34,17 @@ export class PatagoniaAdapter implements HotelAdapter {
 		return this._data.description || '';
 	}
 	getAmenities(): Partial<HotelAmenities> {
-		// const result: Partial<HotelAmenities> = {}
-		// if (this._data.Facilities.length > 0 ) {
-		//     result.general = this._data.Facilities
-		//     return result
-		// }
-		return {};
+		return {
+			room: formatLowTrimArr(this._data.amenities)
+		};
 	}
 	getImages(): Partial<HotelImages> {
-		return {};
+		return {
+			amenities: this._data.images.amenities.map((e) => ({
+				link: e.url,
+				description: e.description
+			}))
+		};
 	}
 	getBookingConditions(): string[] {
 		return [];

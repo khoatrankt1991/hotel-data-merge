@@ -1,8 +1,9 @@
 import { HotelAdapter, HotelObjAdapter } from './Adapter';
 import { AcmeHotelDetail } from '../suppliers/acme/types';
 import { HotelAmenities, HotelImages, HotelLocation } from '../../models/Hotel';
+import { formatLowTrimArr } from '../../utils';
 
-export class AcmeSupplier implements HotelAdapter {
+export class AcmeAdapter implements HotelAdapter {
 	private _data: AcmeHotelDetail;
 	constructor(data: AcmeHotelDetail) {
 		this._data = data;
@@ -17,17 +18,13 @@ export class AcmeSupplier implements HotelAdapter {
 		return this._data.Name;
 	}
 	getLocation(): Partial<HotelLocation> {
-		if (this._data.Latitude && this._data.Longitude) {
-			const hotelLocation: HotelLocation = {
-				lat: this._data.Latitude,
-				lng: this._data.Longitude,
-				address: this._data.Address,
-				city: this._data.City,
-				country: this._data.Country
-			};
-			return hotelLocation;
-		}
-		return {};
+		return {
+			lat: this._data.Latitude,
+			lng: this._data.Longitude,
+			address: this._data.Address,
+			city: this._data.City,
+			country: this._data.Country
+		};
 	}
 	getDescription(): string {
 		return this._data.Description;
@@ -35,7 +32,7 @@ export class AcmeSupplier implements HotelAdapter {
 	getAmenities(): Partial<HotelAmenities> {
 		const result: Partial<HotelAmenities> = {};
 		if (this._data.Facilities.length > 0) {
-			result.general = this._data.Facilities;
+			result.general = formatLowTrimArr(this._data.Facilities);
 			return result;
 		}
 		return {};
