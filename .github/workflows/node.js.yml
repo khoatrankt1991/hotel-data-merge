@@ -19,6 +19,7 @@ jobs:
         node-version: [22.x]
 
     steps:
+    - name: Checkout code
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
@@ -27,6 +28,8 @@ jobs:
         cache: 'npm'
     - run: npm install -g yarn
     - run: yarn
+    - name: Check prettier format
     - run: yarn prettier-check
+    - name: Run Test
     - run: yarn test
     - run: yarn build
