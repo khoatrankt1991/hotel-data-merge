@@ -27,5 +27,6 @@ jobs:
         cache: 'npm'
     - run: npm install -g yarn
     - run: yarn
+    - run: yarn prettier:check
     - run: yarn test
     - run: yarn build
