@@ -30,9 +30,9 @@ export class HotelDataMerge implements HotelAdapter {
 		// should use lodash merge but it' not working correctly
 		// @ts-ignore
 		// return _.merge(...this._items.map(e => e.location))
-		const address = pickGoodChoice(this._items.map(e => e.location?.address))
-		const city = pickGoodChoice(this._items.map(e => e.location?.city || ''))
-		const country = pickGoodChoice(this._items.map(e => e.location?.country || ''))
+		const address = pickGoodChoice(this._items.map((e) => e.location?.address));
+		const city = pickGoodChoice(this._items.map((e) => e.location?.city || ''));
+		const country = pickGoodChoice(this._items.map((e) => e.location?.country || ''));
 		return {
 			lat: this._items.find((e) => e.location?.lat)?.location?.lat,
 			lng: this._items.find((e) => e.location?.lat)?.location?.lng,
@@ -42,7 +42,7 @@ export class HotelDataMerge implements HotelAdapter {
 		};
 	}
 	getDescription() {
-		return pickGoodChoice(this._items.filter(i => i.description).map(e => e.description))
+		return pickGoodChoice(this._items.filter((i) => i.description).map((e) => e.description));
 	}
 	getAmenities(): Partial<HotelAmenities> {
 		const generals: string[] = [];
