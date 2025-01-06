@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-
+    name: Test
     runs-on: ubuntu-latest
 
     strategy:
@@ -27,6 +27,6 @@ jobs:
         cache: 'npm'
     - run: npm install -g yarn
     - run: yarn
-    - run: yarn prettier:check
+    - run: yarn prettier-check
     - run: yarn test
     - run: yarn build
