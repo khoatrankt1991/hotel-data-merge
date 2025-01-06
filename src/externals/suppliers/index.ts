@@ -1,16 +1,18 @@
-import { getAcmeData } from './acme';
-import { getPatagonia } from './patagonia';
-import { getPaperflies } from './paperflies';
+import { searchAcmeData } from './acme';
+import { searchPatagonia } from './patagonia';
+import { searchPaperflies } from './paperflies';
 import { AcmeAdapter } from '../adapter/AcmeAdapter';
 import { PatagoniaAdapter } from '../adapter/PatagoniaAdapter';
 import { HotelDataMerge } from '../adapter/HotelDataMergeAdapter';
 import { PaperfliesAdapter } from '../adapter/PaperfliesAdapter';
+import { SearchHotelParams } from './types';
 
-export const fetchDataFromSuppliers = async () => {
+export const fetchDataFromSuppliers = async (params: SearchHotelParams) => {
+	console.log('params', params);
 	const [dataFromAcme, dataFromPatagonia, dataPaperflies] = await Promise.all([
-		getAcmeData(),
-		getPatagonia(),
-		getPaperflies()
+		searchAcmeData(params),
+		searchPatagonia(params),
+		searchPaperflies(params)
 	]);
 	const acmeObjs = dataFromAcme.map((e) => {
 		const acmeAdapter = new AcmeAdapter(e);
