@@ -27,9 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install -g yarn
-    - run: yarn
-    - name: Check prettier format
+    - run: yarnt
     - run: yarn prettier-check
-    - name: Run Test
     - run: yarn test
     - run: yarn build
