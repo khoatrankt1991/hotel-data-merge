@@ -10,7 +10,7 @@ on:
     branches: [ "feat/merge-hotel" ]
 
 jobs:
-  build:
+  test:
     name: Test
     runs-on: ubuntu-latest
 
@@ -30,3 +30,11 @@ jobs:
     - run: yarn prettier-check
     - run: yarn test
     - run: yarn build
+  deploy:
+    name: Deploy
+    needs: [test]
+    uses: johnbeynon/render-deploy-action@v0.0.8
+      with:
+        service-id: ${{ secrets.RENDER_SERVICE_ID }}
+        api-key: ${{ secrets.RENDER_API_KEY }}
+        wait-for-success: true
