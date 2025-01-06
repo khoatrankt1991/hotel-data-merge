@@ -34,6 +34,7 @@ jobs:
     name: Deploy
     needs: [test]
     uses: johnbeynon/render-deploy-action@v0.0.8
+    name: Deploy to render
       with:
         service-id: ${{ secrets.RENDER_SERVICE_ID }}
         api-key: ${{ secrets.RENDER_API_KEY }}
