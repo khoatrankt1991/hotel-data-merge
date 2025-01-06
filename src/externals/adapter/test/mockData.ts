@@ -212,9 +212,9 @@ export const expectHotelDataMerged: HotelObjAdapter = {
 	location: {
 		lat: 1.264751,
 		lng: 103.824006,
-		address: '8 Sentosa Gateway, Beach Villas',
+		address: '8 Sentosa Gateway, Beach Villas, 098269',
 		city: 'Singapore',
-		country: 'SG'
+		country: 'Singapore'
 	},
 	images: {
 		rooms: [

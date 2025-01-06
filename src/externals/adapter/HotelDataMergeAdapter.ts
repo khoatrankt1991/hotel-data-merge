@@ -1,5 +1,5 @@
 import { HotelAmenities, HotelImages, HotelLocation } from '../../models/Hotel';
-import { mergeArray } from '../../utils';
+import { mergeArray, pickGoodChoice } from '../../utils';
 import { HotelAdapter, HotelObjAdapter } from './Adapter';
 
 export class HotelDataMerge implements HotelAdapter {
@@ -30,20 +30,19 @@ export class HotelDataMerge implements HotelAdapter {
 		// should use lodash merge but it' not working correctly
 		// @ts-ignore
 		// return _.merge(...this._items.map(e => e.location))
+		const address = pickGoodChoice(this._items.map(e => e.location?.address))
+		const city = pickGoodChoice(this._items.map(e => e.location?.city || ''))
+		const country = pickGoodChoice(this._items.map(e => e.location?.country || ''))
 		return {
 			lat: this._items.find((e) => e.location?.lat)?.location?.lat,
 			lng: this._items.find((e) => e.location?.lat)?.location?.lng,
-			address: this._items.find((e) => e.location?.address)?.location?.address,
-			city: this._items.find((e) => e.location?.city)?.location?.city,
-			country: this._items.find((e) => e.location?.country)?.location?.country
+			address,
+			city,
+			country
 		};
 	}
 	getDescription() {
-		const result = this._items
-			.filter((i) => i.description)
-			.map((e) => e.description)
-			.reduce((a, b) => (a.length > b.length ? a : b));
-		return result;
+		return pickGoodChoice(this._items.filter(i => i.description).map(e => e.description))
 	}
 	getAmenities(): Partial<HotelAmenities> {
 		const generals: string[] = [];

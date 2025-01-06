@@ -12,3 +12,7 @@ export const trim = (str: string | null | undefined) => {
 	if (!str) return '';
 	return str.trim();
 };
+
+export const pickGoodChoice = (arr: string[]): string => {
+	return arr.reduce((a, b) => (a.length > b.length ? a : b));
+};
