@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { searchData } from './HotelController';
 import { SearchHotelParams } from '../../externals/suppliers/types';
-// import { SearchHotelParams } from './';
+import { Route } from '../../middlewares';
+import { HttpCode } from '../../core/constants';
 
 export default [
 	{
@@ -10,11 +11,18 @@ export default [
 		handler: {
 			v1: [
 				async (req: Request, res: Response): Promise<void> => {
-					const searchParams: SearchHotelParams = req.query || {};
-					const result = await searchData(searchParams);
-					res.status(200).send(result);
+					try {
+						const searchParams: SearchHotelParams = req.query || {};
+						const result = await searchData(searchParams);
+						res.status(200).send(result);
+					} catch (err) {
+						const { message } = err as any;
+						res.status(HttpCode.BAD_REQUEST).send({
+							message: message
+						});
+					}
 				}
 			]
 		}
 	}
-];
+] as Route[];

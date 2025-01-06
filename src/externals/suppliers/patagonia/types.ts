@@ -9,7 +9,6 @@ export interface PatagoniaHotelDetailImages {
 export interface PatagoniaHotelDetail {
 	id: string;
 	destination: number;
-	description: string;
 	name: string;
 	lat: number;
 	lng: number;

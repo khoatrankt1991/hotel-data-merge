@@ -31,7 +31,7 @@ export class PatagoniaAdapter implements HotelAdapter {
 		return {};
 	}
 	getDescription(): string {
-		return this._data.description || '';
+		return '';
 	}
 	getAmenities(): Partial<HotelAmenities> {
 		return {
@@ -41,6 +41,10 @@ export class PatagoniaAdapter implements HotelAdapter {
 	getImages(): Partial<HotelImages> {
 		return {
 			amenities: this._data.images.amenities.map((e) => ({
+				link: e.url,
+				description: e.description
+			})),
+			rooms: this._data.images.rooms.map((e) => ({
 				link: e.url,
 				description: e.description
 			}))
