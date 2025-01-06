@@ -30,21 +30,16 @@ jobs:
     - run: yarn prettier-check
     - run: yarn test
     - run: yarn build
-  # deploy:
-  #   name: Deploy
-  #   needs: test
-  # #   needs: [test]
-  #   uses: johnbeynon/render-deploy-action@v0.0.8
-  #   with:
-  #     service-id: ${{ secrets.RENDER_SERVICE_ID }}
-  #     api-key: ${{ secrets.RENDER_API_KEY }}
-  #     wait-for-success: true
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to production
-        uses: johnbeynon/render-deploy-action@v0.0.8
-        with:
-          service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          api-key: ${{ secrets.RENDER_SERVICE_ID }}
-          wait-for-success: true
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
+        # uses: johnbeynon/render-deploy-action@v0.0.8
+        # with:
+        #   service-id: ${{ secrets.RENDER_SERVICE_ID }}
+        #   api-key: ${{ secrets.RENDER_SERVICE_ID }}
+        #   wait-for-success: true
