@@ -39,7 +39,7 @@ export class Server {
 		// Test rest api
 		this.app.get('/', (_req: Request, res: Response) => {
 			res.status(HttpCode.OK).send({
-				message: `Welcome to Initial API! \n Endpoints available at http://localhost:${this.port}/`
+				message: `Welcome 1 to Initial API! \n Endpoints available at http://localhost:${this.port}/`
 			});
 		});
 
