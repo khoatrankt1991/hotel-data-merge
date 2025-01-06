@@ -32,9 +32,9 @@ jobs:
     - run: yarn build
   deploy:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Deploy to production
-        needs: test
         env:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
