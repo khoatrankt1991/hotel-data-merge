@@ -31,11 +31,11 @@ export const fetchDataFromSuppliers = async (params: SearchHotelParams) => {
 		const mergedAdapter = new HotelDataMerge([e]);
 		const obj1 = patagonia.find((p) => p.id === e.id);
 		if (obj1) {
-			mergedAdapter.addAdapter(obj1);
+			mergedAdapter.addObjAdapter(obj1);
 		}
 		const obj2 = paperflies.find((p) => p.id === e.id);
 		if (obj2) {
-			mergedAdapter.addAdapter(obj2);
+			mergedAdapter.addObjAdapter(obj2);
 		}
 		result.push(mergedAdapter);
 	});

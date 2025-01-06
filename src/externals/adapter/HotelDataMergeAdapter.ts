@@ -7,7 +7,7 @@ export class HotelDataMerge implements HotelAdapter {
 	constructor(items: HotelObjAdapter[] = []) {
 		this._items = items;
 	}
-	addAdapter(adapter: HotelObjAdapter) {
+	addObjAdapter(adapter: HotelObjAdapter) {
 		this._items.push(adapter);
 	}
 	validate() {
